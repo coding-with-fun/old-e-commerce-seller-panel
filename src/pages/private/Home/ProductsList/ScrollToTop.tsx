@@ -1,15 +1,28 @@
 import RocketIcon from '@mui/icons-material/Rocket';
 import Box from '@mui/material/Box';
+import { useEffect, useState } from 'react';
 
-const ScrollToTop = (props: IProps) => {
-    const { divRef, showButton } = props;
+const ScrollToTop = () => {
+    const [showButton, setShowButton] = useState(false);
 
     const scrollToTop = () => {
-        divRef.current.scroll({
+        window.scrollTo({
             top: 0,
             behavior: 'smooth',
         });
     };
+
+    useEffect(() => {
+        const handleScrollButtonVisibility = () => {
+            setShowButton(scrollY > 200);
+        };
+
+        window.addEventListener('scroll', handleScrollButtonVisibility);
+
+        return () => {
+            window.removeEventListener('scroll', handleScrollButtonVisibility);
+        };
+    }, []);
 
     return (
         <Box
@@ -22,7 +35,12 @@ const ScrollToTop = (props: IProps) => {
                 borderRadius: '50%',
                 backgroundColor: '#ff1f0c',
                 color: '#ffffff',
-                display: showButton ? 'flex' : 'none',
+                // display: showButton ? 'flex' : 'none',
+                display: 'flex',
+                opacity: showButton ? '1' : '0',
+                transition:
+                    'opacity .2s ease-in-out, visibility .2s ease-in-out',
+                visibility: showButton ? 'visible' : 'hidden',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
@@ -34,8 +52,3 @@ const ScrollToTop = (props: IProps) => {
 };
 
 export default ScrollToTop;
-
-interface IProps {
-    divRef: React.MutableRefObject<any>;
-    showButton: boolean;
-}
