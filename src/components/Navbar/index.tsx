@@ -26,6 +26,7 @@ const Navbar = (): JSX.Element => {
     const navigate = useNavigate();
 
     const userDetails = useAppSelector((state) => state.user.userDetails);
+    const cartData = useAppSelector((state) => state.cart.cartData);
 
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     // const [openSideBar, setOpenSideBar] = useState(false);
@@ -118,6 +119,19 @@ const Navbar = (): JSX.Element => {
                                 },
                             }}
                         />
+
+                        <Box
+                            sx={{
+                                marginRight: 3.5,
+                            }}
+                        >
+                            <Typography>
+                                {Object.values(cartData).reduce(
+                                    (prev, current) => prev + current.quantity,
+                                    0
+                                )}
+                            </Typography>
+                        </Box>
 
                         <Box
                             sx={{
