@@ -1,6 +1,6 @@
 const Products: IProduct[] = [
     {
-        id: '0',
+        _id: '0',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -10,7 +10,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '1',
+        _id: '1',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -20,7 +20,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '2',
+        _id: '2',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -30,7 +30,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '3',
+        _id: '3',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -40,7 +40,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '4',
+        _id: '4',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -50,7 +50,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '5',
+        _id: '5',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -60,7 +60,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '6',
+        _id: '6',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -70,7 +70,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '7',
+        _id: '7',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -80,7 +80,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '8',
+        _id: '8',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -90,7 +90,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '9',
+        _id: '9',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -100,7 +100,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '10',
+        _id: '10',
         name: 'Flowers',
         price: 100,
         quantity: 10,
@@ -110,7 +110,7 @@ const Products: IProduct[] = [
         totalRatings: 40,
     },
     {
-        id: '11',
+        _id: '11',
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
@@ -124,7 +124,7 @@ const Products: IProduct[] = [
 export default Products;
 
 export interface IProduct {
-    id: string;
+    _id: string;
     name: string;
     price: number;
     quantity: number;

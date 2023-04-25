@@ -14,7 +14,7 @@ const ProductsList = () => {
             }}
         >
             {Products.map((product: IProduct) => {
-                return <Product key={product.id} product={product} />;
+                return <Product key={product._id} product={product} />;
             })}
         </Box>
     );
