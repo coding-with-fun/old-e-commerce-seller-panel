@@ -8,13 +8,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    /* Color variables */
+    --link-color: #1565c0;
 }
 
 body {
     margin: 0;
     padding: 0;
     min-width: 320px;
-    min-height: 100vh;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 a {

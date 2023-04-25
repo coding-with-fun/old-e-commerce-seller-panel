@@ -1,30 +1,27 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
 import Sockets from '../socket';
+import Navbar from './Navbar';
 
 const Layout = (): JSX.Element => {
-    const [openSideBar, setOpenSideBar] = useState(false);
-
     return (
         <Box
             sx={{
                 display: 'flex',
+                height: '100vh',
             }}
         >
             <Sockets />
 
-            <Navbar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
+            <Navbar />
 
             <Box
                 component="main"
                 sx={{
                     flexGrow: 1,
                     p: 3,
-                    width: openSideBar
-                        ? 'calc(100vw - 288px)'
-                        : 'calc(100vw - 113px)',
+                    pt: 11,
+                    width: '100vw',
                 }}
             >
                 <Box
