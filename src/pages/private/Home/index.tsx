@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import ProductsList from './ProductsList';
-import ScrollToTop from './ProductsList/ScrollToTop';
+import ScrollToTop from '../../../components/ScrollToTop';
 
 const Home = () => {
     return (
