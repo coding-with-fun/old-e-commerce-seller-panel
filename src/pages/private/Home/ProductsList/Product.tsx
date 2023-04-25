@@ -5,11 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import _ from 'lodash';
 import { useDispatch } from 'react-redux';
 import { IProduct } from '../../../../data/ProductsData';
 import { useAppSelector } from '../../../../hooks/redux';
 import { addToCart, removeFromCart } from '../../../../redux/slice/cart.slice';
-import _ from 'lodash';
 
 const Product = (props: IProps) => {
     const { product } = props;

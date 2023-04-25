@@ -1,3 +1,5 @@
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge } from '@mui/material';
 import MuiAppBar, {
     type AppBarProps as MuiAppBarProps,
 } from '@mui/material/AppBar';
@@ -12,12 +14,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import _ from 'lodash';
-import { Fragment, useEffect, useState, type MouseEvent, useMemo } from 'react';
+import { Fragment, useEffect, useMemo, useState, type MouseEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import env from '../../env';
 import { useAppSelector } from '../../hooks/redux';
 import routes from '../../router/routes';
 import { getUserToken, removeUserToken } from '../../utils/manageUserToken';
+import './index.css';
 
 // const settings = ['Profile', 'Sign Out'];
 
@@ -132,7 +135,27 @@ const Navbar = (): JSX.Element => {
                                 marginRight: 3.5,
                             }}
                         >
-                            <Typography>{totalCartQuantity}</Typography>
+                            {/* <Typography>{totalCartQuantity}</Typography> */}
+
+                            <Badge
+                                badgeContent={totalCartQuantity}
+                                // color="error"
+                                onClick={() => {
+                                    alert(
+                                        `Total quantity is ${totalCartQuantity}`
+                                    );
+                                }}
+                                sx={{
+                                    cursor: 'pointer',
+                                }}
+                                className="cart-badge"
+                            >
+                                <ShoppingCartIcon
+                                    sx={{
+                                        color: '#ffffff',
+                                    }}
+                                />
+                            </Badge>
                         </Box>
 
                         <Box
