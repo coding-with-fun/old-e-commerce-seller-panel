@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import _ from 'lodash';
-import { Fragment, useEffect, useState, type MouseEvent } from 'react';
+import { Fragment, useEffect, useState, type MouseEvent, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import env from '../../env';
 import { useAppSelector } from '../../hooks/redux';
@@ -50,6 +50,13 @@ const Navbar = (): JSX.Element => {
     useEffect(() => {
         setUserToken(getUserToken());
     }, [location, userToken]);
+
+    const totalCartQuantity = useMemo(() => {
+        return Object.values(cartData).reduce(
+            (prev, current) => prev + current.quantity,
+            0
+        );
+    }, [cartData]);
 
     return (
         <Fragment>
@@ -125,12 +132,7 @@ const Navbar = (): JSX.Element => {
                                 marginRight: 3.5,
                             }}
                         >
-                            <Typography>
-                                {Object.values(cartData).reduce(
-                                    (prev, current) => prev + current.quantity,
-                                    0
-                                )}
-                            </Typography>
+                            <Typography>{totalCartQuantity}</Typography>
                         </Box>
 
                         <Box
