@@ -28,6 +28,7 @@ const Layout = (): JSX.Element => {
                     sx={{
                         display: 'flex',
                         minHeight: 'calc(100vh - 7rem)',
+                        height: '100%',
                     }}
                 >
                     <Outlet />

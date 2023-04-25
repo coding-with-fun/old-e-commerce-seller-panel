@@ -1,5 +1,16 @@
+import { Fragment, useRef } from 'react';
+import ScrollToTop from './ProductsList/ScrollToTop';
+import ProductsList from './ProductsList';
+
 const Home = () => {
-    return <div>Home</div>;
+    const divRef = useRef(null);
+
+    return (
+        <Fragment>
+            <ScrollToTop divRef={divRef} />
+            <ProductsList divRef={divRef} />
+        </Fragment>
+    );
 };
 
 export default Home;
