@@ -2,7 +2,7 @@ import RocketIcon from '@mui/icons-material/Rocket';
 import Box from '@mui/material/Box';
 
 const ScrollToTop = (props: IProps) => {
-    const { divRef } = props;
+    const { divRef, showButton } = props;
 
     const scrollToTop = () => {
         divRef.current.scroll({
@@ -22,7 +22,7 @@ const ScrollToTop = (props: IProps) => {
                 borderRadius: '50%',
                 backgroundColor: '#ff1f0c',
                 color: '#ffffff',
-                display: 'flex',
+                display: showButton ? 'flex' : 'none',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
@@ -37,4 +37,5 @@ export default ScrollToTop;
 
 interface IProps {
     divRef: React.MutableRefObject<any>;
+    showButton: boolean;
 }

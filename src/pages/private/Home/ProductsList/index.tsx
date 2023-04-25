@@ -1,22 +1,17 @@
-import { SyntheticEvent, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { SyntheticEvent, useEffect } from 'react';
 import Products from '../../../../data/ProductsData';
 import './index.css';
 
 const ProductsList = (props: IProps) => {
-    const { divRef } = props;
+    const { divRef, setShowButton } = props;
 
     const onScroll = (e: SyntheticEvent) => {
-        // const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-        // const scrollTop = divRef.current.scrollTop;
-        // console.log(
-        //     `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
-        // );
         const target = e.target as HTMLTextAreaElement;
-        console.log('Current scroll position:', target.scrollTop);
+        setShowButton(target.scrollTop > 150);
     };
 
     useEffect(() => {
@@ -105,4 +100,5 @@ export default ProductsList;
 
 interface IProps {
     divRef: React.MutableRefObject<any>;
+    setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
 }
