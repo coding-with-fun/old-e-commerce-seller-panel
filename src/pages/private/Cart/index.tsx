@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { useAppSelector } from '../../../hooks/redux';
 import CartData from './CartData';
 import EmptyCart from './EmptyCart';
+import './index.css';
 
 const Cart = () => {
     const cartData = useAppSelector((state) => state.cart.cartData);

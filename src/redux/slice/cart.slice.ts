@@ -42,10 +42,18 @@ const CartSlice = createSlice({
                 delete state.cartData[_id];
             }
         },
+
+        updateCart: (state, action) => {
+            const { _id, quantity } = action.payload;
+
+            if (state.cartData[_id]) {
+                state.cartData[_id].quantity = quantity;
+            }
+        },
     },
 });
 
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const { addToCart, removeFromCart, updateCart } = CartSlice.actions;
 
 export const cart = (state: RootState): IInitialData => state.cart;
 

@@ -1,0 +1,7 @@
+.cart-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cart-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
