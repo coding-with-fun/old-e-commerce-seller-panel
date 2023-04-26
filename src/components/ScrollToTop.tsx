@@ -28,8 +28,9 @@ const ScrollToTop = () => {
         <Box
             sx={{
                 position: 'fixed',
-                bottom: '1rem',
-                right: '1rem',
+                bottom: '0.5rem',
+                right: '0.5rem',
+                zIndex: 9,
                 cursor: 'pointer',
                 padding: '1rem',
                 borderRadius: '50%',
