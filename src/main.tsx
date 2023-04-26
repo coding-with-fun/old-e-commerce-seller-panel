@@ -4,10 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { PersistGate } from 'redux-persist/integration/react';
 import App from './App.tsx';
 import { socket, SocketContext } from './context/socket';
 import './index.css';
-import store from './redux/store';
+import store, { persistor } from './redux/store';
 
 // External CSS
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,22 +24,24 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ThemeProvider theme={theme}>
             <SocketContext.Provider value={socket}>
                 <Provider store={store}>
-                    <CssBaseline />
+                    <PersistGate loading={null} persistor={persistor}>
+                        <CssBaseline />
 
-                    <App />
+                        <App />
 
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                    />
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
+                    </PersistGate>
                 </Provider>
             </SocketContext.Provider>
         </ThemeProvider>
