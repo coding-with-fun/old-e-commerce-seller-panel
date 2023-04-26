@@ -1,11 +1,10 @@
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useMemo } from 'react';
 import { ICart } from '../../../../redux/slice/cart.slice';
 import CartItem from './CartItem';
-import { useMemo } from 'react';
-import CheckoutSection from './CheckoutSection';
 
 const CartData = (props: IProps) => {
     const { cartData } = props;
@@ -30,8 +29,10 @@ const CartData = (props: IProps) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                alignItems: 'center',
                 width: '100%',
             }}
+            className="cart"
         >
             <Box
                 sx={{
@@ -52,67 +53,57 @@ const CartData = (props: IProps) => {
 
             <Box
                 sx={{
-                    display: 'flex',
-                    gap: '2rem',
-                    width: '100%',
+                    width: '80%',
+                    height: 'fit-content',
+                    borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                    paddingTop: '1.5rem',
                 }}
             >
-                <Paper
-                    elevation={0}
+                <Box
                     sx={{
-                        flex: 1,
-                        height: 'fit-content',
-                        borderTop: '1px solid rgba(0, 0, 0, 0.12)',
-                        paddingTop: '1.5rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: 'calc(100vh - 17.5rem)',
+                        overflowY: 'scroll',
                     }}
-                    className="cart-data"
+                    className="cart-items hide-scrollbar"
                 >
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            height: 'calc(100vh - 17.2rem)',
-                            overflowY: 'scroll',
-                        }}
-                        className="cart-items hide-scrollbar"
-                    >
-                        {Object.keys(cartData).map((product, index) => {
-                            return (
-                                <CartItem
-                                    product={cartData[product]}
-                                    key={index}
-                                />
-                            );
-                        })}
-                    </Box>
+                    {Object.keys(cartData).map((product, index) => {
+                        return (
+                            <CartItem product={cartData[product]} key={index} />
+                        );
+                    })}
+                </Box>
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        paddingLeft: '12rem',
+                        paddingTop: '1rem',
+                        marginTop: '1rem',
+                        borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                    }}
+                >
+                    <Typography variant="h6">
+                        {totalCartPrice.quantity} Item(s)
+                    </Typography>
 
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingLeft: '12rem',
-                            paddingTop: '1rem',
-                            marginTop: '1rem',
-                            borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                            alignItems: 'center',
+                            gap: '1rem',
                         }}
                     >
-                        <Typography variant="h6">
-                            {totalCartPrice.quantity} Item(s)
-                        </Typography>
                         <Typography variant="h6">
                             Item total: ₹{totalCartPrice.price}
                         </Typography>
-                    </Box>
-                </Paper>
 
-                <Paper
-                    elevation={0}
-                    sx={{
-                        height: 'fit-content',
-                    }}
-                >
-                    <CheckoutSection />
-                </Paper>
+                        <Button variant="outlined">Checkout</Button>
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );

@@ -116,10 +116,18 @@ const CartItem = (props: IProps) => {
                     flex: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between',
                 }}
             >
-                <Typography>{product.name}</Typography>
+                <Typography
+                    className="product-title"
+                    sx={{
+                        minWidth: '230px',
+                    }}
+                >
+                    {product.name}
+                </Typography>
+
+                <Typography variant="body2">by {product.seller}</Typography>
             </Box>
 
             <Box
@@ -179,7 +187,11 @@ const CartItem = (props: IProps) => {
                                     }
                                 }}
                                 onKeyDown={(event) => {
-                                    if (event.ctrlKey) {
+                                    if (
+                                        event.ctrlKey ||
+                                        event.altKey ||
+                                        event.metaKey
+                                    ) {
                                         event.preventDefault();
                                     }
                                 }}
@@ -218,7 +230,11 @@ const CartItem = (props: IProps) => {
                         textAlign: 'right',
                     }}
                 >
-                    <Typography>
+                    <Typography
+                        sx={{
+                            fontSize: '1.1rem',
+                        }}
+                    >
                         Total: ₹{product.price * product.quantity}
                     </Typography>
                 </Box>

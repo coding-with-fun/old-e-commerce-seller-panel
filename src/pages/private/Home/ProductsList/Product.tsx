@@ -65,7 +65,14 @@ const Product = (props: IProps) => {
                 }}
             />
 
-            <Typography>{product.name}</Typography>
+            <Typography
+                className="product-title"
+                sx={{
+                    marginTop: '1rem',
+                }}
+            >
+                {product.name}
+            </Typography>
             <Typography variant="body2">by {product.seller}</Typography>
 
             <Box
