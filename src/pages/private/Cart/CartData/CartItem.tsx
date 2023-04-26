@@ -136,6 +136,7 @@ const CartItem = (props: IProps) => {
                     justifyContent: 'space-between',
                     flexDirection: 'column',
                     gap: '2rem',
+                    marginLeft: '3rem',
                 }}
             >
                 <Box

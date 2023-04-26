@@ -53,7 +53,7 @@ const CartData = (props: IProps) => {
 
             <Box
                 sx={{
-                    maxWidth: '730px',
+                    maxWidth: '1080px',
                     height: 'fit-content',
                     borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                     paddingTop: '1.5rem',
@@ -79,32 +79,34 @@ const CartData = (props: IProps) => {
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        gap: '1rem',
                         alignItems: 'center',
                         paddingLeft: '12rem',
                         paddingTop: '1rem',
                         marginTop: '1rem',
                         borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                     }}
-                    className="total-details"
+                    className="checkout-details"
                 >
-                    <Typography variant="h6">
-                        {totalCartPrice.quantity} Item(s)
-                    </Typography>
-
                     <Box
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '1rem',
+                            justifyContent: 'space-between',
+                            flex: 1,
                         }}
+                        className="total-details"
                     >
+                        <Typography variant="h6">
+                            {totalCartPrice.quantity} Item(s)
+                        </Typography>
+
                         <Typography variant="h6">
                             Item total: ₹{totalCartPrice.price}
                         </Typography>
-
-                        <Button variant="outlined">Checkout</Button>
                     </Box>
+
+                    <Button variant="outlined">Checkout</Button>
                 </Box>
             </Box>
         </Box>
