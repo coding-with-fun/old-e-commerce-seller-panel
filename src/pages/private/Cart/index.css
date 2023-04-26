@@ -9,3 +9,24 @@
 .cart-item:last-child {
     border-color: transparent;
 }
+
+@media only screen and (max-width: 850px) {
+    .cart-list {
+        max-width: 300px;
+    }
+
+    .cart-items {
+        height: calc(100vh - 19.4rem);
+    }
+
+    .cart-item {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .total-details {
+        padding-left: 0;
+        flex-flow: column;
+        align-items: flex-start;
+    }
+}

@@ -58,6 +58,7 @@ const CartData = (props: IProps) => {
                     borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                     paddingTop: '1.5rem',
                 }}
+                className="cart-list"
             >
                 <Box
                     sx={{
@@ -85,6 +86,7 @@ const CartData = (props: IProps) => {
                         marginTop: '1rem',
                         borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                     }}
+                    className="total-details"
                 >
                     <Typography variant="h6">
                         {totalCartPrice.quantity} Item(s)
