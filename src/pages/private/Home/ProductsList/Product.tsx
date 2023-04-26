@@ -156,9 +156,7 @@ const Product = (props: IProps) => {
                         onClick={() => {
                             dispatch(
                                 addToCart({
-                                    _id: product._id,
-                                    quantity: product.quantity,
-                                    name: product.name,
+                                    ...product,
                                 })
                             );
                         }}

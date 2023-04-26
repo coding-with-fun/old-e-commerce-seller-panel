@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { type RootState } from '../store';
+import { IProduct } from '../../data/ProductsData';
 
 export interface ICart {
-    [_id: string]: {
-        quantity: number;
-        name: string;
-    };
+    [_id: string]: IProduct;
 }
 
 export interface IInitialData {
@@ -21,15 +19,15 @@ const CartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const { _id, quantity, name } = action.payload;
+            const payload = action.payload as IProduct;
 
-            if (state.cartData[_id]) {
-                if (state.cartData[_id].quantity < quantity) {
-                    state.cartData[_id].quantity += 1;
+            if (state.cartData[payload._id]) {
+                if (state.cartData[payload._id].quantity < payload.quantity) {
+                    state.cartData[payload._id].quantity += 1;
                 }
             } else {
-                state.cartData[_id] = {
-                    name,
+                state.cartData[payload._id] = {
+                    ...payload,
                     quantity: 1,
                 };
             }
