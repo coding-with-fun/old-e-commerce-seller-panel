@@ -19,6 +19,7 @@ const ResetPassword = React.lazy(
 
 // Private pages
 const Home = React.lazy(async () => await import('../pages/private/Home'));
+const Cart = React.lazy(async () => await import('../pages/private/Cart'));
 
 // Common pages
 const VerifyEmail = React.lazy(
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: routes.private.home,
                 element: <ProtectedRoute>{lazyLoad(Home)}</ProtectedRoute>,
+            },
+            {
+                path: routes.private.cart,
+                element: <ProtectedRoute>{lazyLoad(Cart)}</ProtectedRoute>,
             },
 
             // Wildcard

@@ -7,6 +7,7 @@ const routes = {
     },
     private: {
         home: '/',
+        cart: '/cart',
     },
     common: {
         verifyEmail: '/verify-email',

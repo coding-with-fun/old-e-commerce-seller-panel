@@ -139,14 +139,15 @@ const Navbar = (): JSX.Element => {
 
                             <Badge
                                 badgeContent={totalCartQuantity}
-                                // color="error"
                                 onClick={() => {
-                                    alert(
-                                        `Total quantity is ${totalCartQuantity}`
-                                    );
+                                    navigate(routes.private.cart);
                                 }}
                                 sx={{
                                     cursor: 'pointer',
+                                    ...((userToken === null ||
+                                        userToken === '') && {
+                                        display: 'none',
+                                    }),
                                 }}
                                 className="cart-badge"
                             >

@@ -38,7 +38,7 @@ const CartSlice = createSlice({
         removeFromCart: (state, action) => {
             const { _id } = action.payload;
 
-            if (state.cartData[_id] && state.cartData[_id].quantity > 0) {
+            if (state.cartData[_id] && state.cartData[_id].quantity > 1) {
                 state.cartData[_id].quantity -= 1;
             } else {
                 delete state.cartData[_id];
