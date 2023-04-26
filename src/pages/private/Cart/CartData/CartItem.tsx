@@ -106,7 +106,7 @@ const CartItem = (props: IProps) => {
             <Skeleton
                 variant="rounded"
                 width={160}
-                height={190}
+                height={174}
                 sx={{
                     display: isImageLoading ? 'block' : 'none',
                 }}
