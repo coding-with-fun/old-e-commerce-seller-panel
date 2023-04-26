@@ -64,7 +64,11 @@ const Navbar = (): JSX.Element => {
     return (
         <Fragment>
             <AppBar position="fixed">
-                <Container maxWidth="xl">
+                <Container
+                    sx={{
+                        maxWidth: '100% !important',
+                    }}
+                >
                     <Toolbar disableGutters>
                         <Typography
                             variant="h6"
