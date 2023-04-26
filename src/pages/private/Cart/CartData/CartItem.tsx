@@ -1,3 +1,4 @@
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
@@ -56,6 +57,15 @@ const CartItem = (props: IProps) => {
             );
         }
         setShowUpdateButton(false);
+    };
+
+    const deleteProduct = () => {
+        dispatch(
+            updateCart({
+                _id: product._id,
+                quantity: 0,
+            })
+        );
     };
 
     useEffect(() => {
@@ -156,6 +166,14 @@ const CartItem = (props: IProps) => {
                             Update
                         </Button>
                     ) : null}
+
+                    <DeleteOutlinedIcon
+                        color="error"
+                        sx={{
+                            cursor: 'pointer',
+                        }}
+                        onClick={deleteProduct}
+                    />
                 </Box>
             </Box>
 
@@ -164,7 +182,7 @@ const CartItem = (props: IProps) => {
                     minHeight: '100%',
                 }}
             >
-                <Typography>{product.price}</Typography>
+                <Typography>₹{product.price}</Typography>
             </Box>
         </Box>
     );
