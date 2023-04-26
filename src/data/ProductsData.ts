@@ -14,7 +14,7 @@ const Products: IProduct[] = [
         name: 'Bed sheet',
         price: 120,
         quantity: 25,
-        url: 'https://images.pexels.com/photos/15839543/pexels-photo-15839543.jpeg',
+        url: 'https://images.pexels.com/photos/1540258/pexels-photo-1540258.jpeg',
         seller: 'Harrsh',
         ratings: 4.2,
         totalRatings: 40,

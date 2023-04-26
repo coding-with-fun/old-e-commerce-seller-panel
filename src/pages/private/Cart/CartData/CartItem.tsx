@@ -77,7 +77,7 @@ const CartItem = (props: IProps) => {
             sx={{
                 padding: '1rem',
                 display: 'flex',
-                height: '150px',
+                minHeight: '13rem',
                 minWidth: '100%',
                 gap: '1rem',
             }}
@@ -85,7 +85,7 @@ const CartItem = (props: IProps) => {
         >
             <Box
                 sx={{
-                    width: '10rem',
+                    width: '11rem',
                     display: isImageLoading ? 'none' : 'block',
                 }}
             >
@@ -106,7 +106,7 @@ const CartItem = (props: IProps) => {
             <Skeleton
                 variant="rounded"
                 width={160}
-                height={116}
+                height={190}
                 sx={{
                     display: isImageLoading ? 'block' : 'none',
                 }}
@@ -121,68 +121,109 @@ const CartItem = (props: IProps) => {
                 }}
             >
                 <Typography>{product.name}</Typography>
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        gap: '1rem',
-                        alignItems: 'center',
-                    }}
-                >
-                    <InputBase
-                        sx={{
-                            border: '1px solid rgba(0, 0, 0, 0.12)',
-                            width: '5rem',
-                            padding: '0.15rem 0.8rem',
-                            borderRadius: '4px',
-                            userSelect: 'none',
-                        }}
-                        value={selectedQuantity}
-                        onMouseDown={(event) => {
-                            if (event.detail > 1) {
-                                event.preventDefault();
-                            }
-                        }}
-                        onKeyDown={(event) => {
-                            if (event.ctrlKey) {
-                                event.preventDefault();
-                            }
-                        }}
-                        onClick={() => {
-                            setShowUpdateButton(true);
-                        }}
-                        onChange={(e) => {
-                            handleChangeSelectedQuantity(e);
-                        }}
-                    />
-
-                    {showUpdateButton ? (
-                        <Button
-                            variant="outlined"
-                            size="small"
-                            color="warning"
-                            onClick={handleUpdateQuantity}
-                        >
-                            Update
-                        </Button>
-                    ) : null}
-
-                    <DeleteOutlinedIcon
-                        color="error"
-                        sx={{
-                            cursor: 'pointer',
-                        }}
-                        onClick={deleteProduct}
-                    />
-                </Box>
             </Box>
 
             <Box
                 sx={{
-                    minHeight: '100%',
+                    display: 'flex',
+                    gap: '3rem',
+                    justifyContent: 'center',
                 }}
             >
-                <Typography>₹{product.price}</Typography>
+                <Box>
+                    <Typography>Each</Typography>
+                    <Typography>₹{product.price}</Typography>
+                </Box>
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        flexDirection: 'column',
+                        gap: '2rem',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            gap: '0.5rem',
+                            flexDirection: 'column',
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                textAlign: 'center',
+                            }}
+                        >
+                            Quantity
+                        </Typography>
+
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                gap: '0.5rem',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <InputBase
+                                sx={{
+                                    border: '1px solid rgba(0, 0, 0, 0.12)',
+                                    width: '5rem',
+                                    padding: '0.15rem 0.8rem',
+                                    borderRadius: '4px',
+                                    userSelect: 'none',
+                                }}
+                                value={selectedQuantity}
+                                onMouseDown={(event) => {
+                                    if (event.detail > 1) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                onKeyDown={(event) => {
+                                    if (event.ctrlKey) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                onClick={() => {
+                                    setShowUpdateButton(true);
+                                }}
+                                onChange={(e) => {
+                                    handleChangeSelectedQuantity(e);
+                                }}
+                            />
+
+                            <DeleteOutlinedIcon
+                                color="error"
+                                sx={{
+                                    cursor: 'pointer',
+                                }}
+                                onClick={deleteProduct}
+                            />
+                        </Box>
+
+                        {showUpdateButton ? (
+                            <Button
+                                variant="outlined"
+                                size="small"
+                                color="warning"
+                                onClick={handleUpdateQuantity}
+                            >
+                                Update
+                            </Button>
+                        ) : null}
+                    </Box>
+
+                    <Box
+                        sx={{
+                            textAlign: 'right',
+                        }}
+                    >
+                        <Typography>
+                            Total: ₹{product.price * product.quantity}
+                        </Typography>
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
