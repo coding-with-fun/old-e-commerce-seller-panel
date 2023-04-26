@@ -4,17 +4,22 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import _ from 'lodash';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { IProduct } from '../../../../data/ProductsData';
 import { useAppSelector } from '../../../../hooks/redux';
 import { addToCart, removeFromCart } from '../../../../redux/slice/cart.slice';
+import './Product.css';
 
 const Product = (props: IProps) => {
     const { product } = props;
     const cartData = useAppSelector((state) => state.cart.cartData);
     const dispatch = useDispatch();
+
+    const [isImageLoading, setIsImageLoading] = useState(true);
 
     return (
         <Paper
@@ -26,12 +31,15 @@ const Product = (props: IProps) => {
                 justifyContent: 'center',
                 flexDirection: 'column',
                 cursor: 'pointer',
+                minHeight: '266px',
+                minWidth: '337px',
             }}
         >
             <Box
                 sx={{
                     height: '10rem',
                     width: '100%',
+                    display: isImageLoading ? 'none' : 'block',
                 }}
             >
                 <img
@@ -42,8 +50,20 @@ const Product = (props: IProps) => {
                         width: '100%',
                         objectFit: 'contain',
                     }}
+                    onLoad={() => {
+                        setIsImageLoading(false);
+                    }}
                 />
             </Box>
+
+            <Skeleton
+                variant="rounded"
+                width={303}
+                height={160}
+                sx={{
+                    display: isImageLoading ? 'block' : 'none',
+                }}
+            />
 
             <Typography>{product.name}</Typography>
 
@@ -93,19 +113,20 @@ const Product = (props: IProps) => {
                 >
                     <IconButton
                         aria-label="removeFromCart"
+                        className={
+                            _.get(cartData[product._id], 'quantity', 0) === 0
+                                ? 'disabled-cart-manipulation-button'
+                                : 'cart-manipulation-button'
+                        }
+                        disabled={
+                            _.get(cartData[product._id], 'quantity', 0) === 0
+                        }
                         onClick={() => {
                             dispatch(
                                 removeFromCart({
                                     _id: product._id,
                                 })
                             );
-                        }}
-                        sx={{
-                            cursor:
-                                _.get(cartData[product._id], 'quantity', 0) ===
-                                0
-                                    ? 'not-allowed'
-                                    : 'cursor',
                         }}
                     >
                         <RemoveIcon />
@@ -122,6 +143,16 @@ const Product = (props: IProps) => {
 
                     <IconButton
                         aria-label="addToCart"
+                        className={
+                            _.get(cartData[product._id], 'quantity', 0) ===
+                            product.quantity
+                                ? 'disabled-cart-manipulation-button'
+                                : 'cart-manipulation-button'
+                        }
+                        disabled={
+                            _.get(cartData[product._id], 'quantity', 0) ===
+                            product.quantity
+                        }
                         onClick={() => {
                             dispatch(
                                 addToCart({
@@ -130,13 +161,6 @@ const Product = (props: IProps) => {
                                     name: product.name,
                                 })
                             );
-                        }}
-                        sx={{
-                            cursor:
-                                _.get(cartData[product._id], 'quantity', 0) ===
-                                product.quantity
-                                    ? 'not-allowed'
-                                    : 'cursor',
                         }}
                     >
                         <AddIcon />

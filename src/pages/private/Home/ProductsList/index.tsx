@@ -1,8 +1,16 @@
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Products, { IProduct } from '../../../../data/ProductsData';
 import Product from './Product';
+import ProductsSkeleton from './ProductsSkeleton';
 
 const ProductsList = () => {
+    const [products, setProducts] = useState<IProduct[]>([]);
+
+    useEffect(() => {
+        setProducts(Products);
+    }, []);
+
     return (
         <Box
             sx={{
@@ -13,9 +21,13 @@ const ProductsList = () => {
                 gap: '1rem',
             }}
         >
-            {Products.map((product: IProduct) => {
-                return <Product key={product._id} product={product} />;
-            })}
+            {products.length > 0 ? (
+                products.map((product: IProduct) => {
+                    return <Product key={product._id} product={product} />;
+                })
+            ) : (
+                <ProductsSkeleton />
+            )}
         </Box>
     );
 };
