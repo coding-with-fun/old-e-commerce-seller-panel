@@ -30,7 +30,6 @@ const CartData = (props: IProps) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.5rem',
                 width: '100%',
             }}
         >
@@ -40,6 +39,7 @@ const CartData = (props: IProps) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
+                    paddingBottom: '1.5rem',
                 }}
             >
                 <ShoppingBagOutlinedIcon
@@ -62,6 +62,8 @@ const CartData = (props: IProps) => {
                     sx={{
                         flex: 1,
                         height: 'fit-content',
+                        borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                        paddingTop: '1.5rem',
                     }}
                     className="cart-data"
                 >
@@ -69,7 +71,7 @@ const CartData = (props: IProps) => {
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            height: 'calc(100vh - 14rem)',
+                            height: 'calc(100vh - 17.2rem)',
                             overflowY: 'scroll',
                         }}
                         className="cart-items hide-scrollbar"
@@ -88,14 +90,17 @@ const CartData = (props: IProps) => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            pl: '12rem',
+                            paddingLeft: '12rem',
+                            paddingTop: '1rem',
+                            marginTop: '1rem',
+                            borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                         }}
                     >
-                        <Typography>
+                        <Typography variant="h6">
                             {totalCartPrice.quantity} Item(s)
                         </Typography>
-                        <Typography>
-                            Item Total: ₹{totalCartPrice.price}
+                        <Typography variant="h6">
+                            Item total: ₹{totalCartPrice.price}
                         </Typography>
                     </Box>
                 </Paper>

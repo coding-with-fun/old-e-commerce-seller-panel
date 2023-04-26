@@ -77,15 +77,14 @@ const CartItem = (props: IProps) => {
             sx={{
                 padding: '1rem',
                 display: 'flex',
-                minHeight: '13rem',
-                minWidth: '100%',
                 gap: '1rem',
             }}
             className="cart-item"
         >
             <Box
                 sx={{
-                    width: '11rem',
+                    width: '160px',
+                    height: '174px',
                     display: isImageLoading ? 'none' : 'block',
                 }}
             >
@@ -126,23 +125,28 @@ const CartItem = (props: IProps) => {
             <Box
                 sx={{
                     display: 'flex',
-                    gap: '3rem',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
+                    flexDirection: 'column',
+                    gap: '2rem',
                 }}
             >
-                <Box>
-                    <Typography>Each</Typography>
-                    <Typography>₹{product.price}</Typography>
-                </Box>
-
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        flexDirection: 'column',
-                        gap: '2rem',
+                        gap: '4rem',
                     }}
                 >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1rem',
+                        }}
+                    >
+                        <Typography>Each</Typography>
+                        <Typography>₹{product.price}</Typography>
+                    </Box>
+
                     <Box
                         sx={{
                             display: 'flex',
@@ -150,13 +154,7 @@ const CartItem = (props: IProps) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <Typography
-                            sx={{
-                                textAlign: 'center',
-                            }}
-                        >
-                            Quantity
-                        </Typography>
+                        <Typography>Quantity</Typography>
 
                         <Box
                             sx={{
@@ -213,16 +211,16 @@ const CartItem = (props: IProps) => {
                             </Button>
                         ) : null}
                     </Box>
+                </Box>
 
-                    <Box
-                        sx={{
-                            textAlign: 'right',
-                        }}
-                    >
-                        <Typography>
-                            Total: ₹{product.price * product.quantity}
-                        </Typography>
-                    </Box>
+                <Box
+                    sx={{
+                        textAlign: 'right',
+                    }}
+                >
+                    <Typography>
+                        Total: ₹{product.price * product.quantity}
+                    </Typography>
                 </Box>
             </Box>
         </Box>
