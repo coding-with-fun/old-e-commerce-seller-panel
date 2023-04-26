@@ -53,7 +53,7 @@ const CartData = (props: IProps) => {
 
             <Box
                 sx={{
-                    width: '80%',
+                    maxWidth: '730px',
                     height: 'fit-content',
                     borderTop: '1px solid rgba(0, 0, 0, 0.12)',
                     paddingTop: '1.5rem',
