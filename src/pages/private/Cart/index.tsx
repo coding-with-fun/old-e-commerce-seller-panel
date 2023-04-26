@@ -9,6 +9,8 @@ const Cart = () => {
 
     const isCartEmpty = _.isEmpty(cartData);
 
+    console.log(cartData);
+
     return isCartEmpty ? <EmptyCart /> : <CartData cartData={cartData} />;
 };
 

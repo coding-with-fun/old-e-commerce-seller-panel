@@ -47,7 +47,11 @@ const CartSlice = createSlice({
             const { _id, quantity } = action.payload;
 
             if (state.cartData[_id]) {
-                state.cartData[_id].quantity = quantity;
+                if (quantity > 0) {
+                    state.cartData[_id].quantity = quantity;
+                } else {
+                    delete state.cartData[_id];
+                }
             }
         },
     },

@@ -3,9 +3,10 @@ import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import { IProduct } from '../../../../data/ProductsData';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Products, { IProduct } from '../../../../data/ProductsData';
+import toast from '../../../../libs/toast';
 import { updateCart } from '../../../../redux/slice/cart.slice';
 
 const CartItem = (props: IProps) => {
@@ -16,8 +17,6 @@ const CartItem = (props: IProps) => {
     const [isImageLoading, setIsImageLoading] = useState(true);
     const [showUpdateButton, setShowUpdateButton] = useState(false);
     const [selectedQuantity, setSelectedQuantity] = useState(product.quantity);
-
-    console.log(product);
 
     const handleChangeSelectedQuantity = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,14 +32,35 @@ const CartItem = (props: IProps) => {
     };
 
     const handleUpdateQuantity = () => {
-        dispatch(
-            updateCart({
-                _id: product._id,
-                quantity: selectedQuantity,
-            })
-        );
+        const dataIndex = Products.findIndex((el) => el._id === product._id);
+        const dataProduct = Products[dataIndex];
+
+        if (selectedQuantity > dataProduct.quantity) {
+            toast(
+                `This seller has only ${dataProduct.quantity} of ${product.name} available.`,
+                'warn'
+            );
+            dispatch(
+                updateCart({
+                    _id: product._id,
+                    quantity: dataProduct.quantity,
+                })
+            );
+            setSelectedQuantity(dataProduct.quantity);
+        } else {
+            dispatch(
+                updateCart({
+                    _id: product._id,
+                    quantity: selectedQuantity,
+                })
+            );
+        }
         setShowUpdateButton(false);
     };
+
+    useEffect(() => {
+        setSelectedQuantity(product.quantity);
+    }, [product]);
 
     return (
         <Box
@@ -107,14 +127,17 @@ const CartItem = (props: IProps) => {
                             borderRadius: '4px',
                             userSelect: 'none',
                         }}
-                        onKeyDown={(event) => {
-                            if (event.ctrlKey) {
-                                //13 is the key code for Enter
+                        value={selectedQuantity}
+                        onMouseDown={(event) => {
+                            if (event.detail > 1) {
                                 event.preventDefault();
-                                //Here you can even write the logic to select the value from the drop down or something.
                             }
                         }}
-                        value={selectedQuantity}
+                        onKeyDown={(event) => {
+                            if (event.ctrlKey) {
+                                event.preventDefault();
+                            }
+                        }}
                         onClick={() => {
                             setShowUpdateButton(true);
                         }}
