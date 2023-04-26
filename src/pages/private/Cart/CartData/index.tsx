@@ -30,7 +30,7 @@ const CartData = (props: IProps) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '2rem',
+                gap: '1.5rem',
                 width: '100%',
             }}
         >
@@ -72,7 +72,7 @@ const CartData = (props: IProps) => {
                             height: 'calc(100vh - 14rem)',
                             overflowY: 'scroll',
                         }}
-                        className="cart-items"
+                        className="cart-items hide-scrollbar"
                     >
                         {Object.keys(cartData).map((product, index) => {
                             return (
@@ -88,9 +88,12 @@ const CartData = (props: IProps) => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
+                            pl: '12rem',
                         }}
                     >
-                        <Typography>{totalCartPrice.quantity} Items</Typography>
+                        <Typography>
+                            {totalCartPrice.quantity} Item(s)
+                        </Typography>
                         <Typography>
                             Item Total: ₹{totalCartPrice.price}
                         </Typography>
