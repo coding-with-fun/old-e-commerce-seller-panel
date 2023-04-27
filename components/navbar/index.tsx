@@ -1,14 +1,15 @@
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   return (
     <div className="flex justify-end gap-4 p-5">
       <Link href={"/"}>Home</Link>
-      <Link href={"/dashboard"}>Dashboard</Link>
+      {status === "authenticated" ? (
+        <Link href={"/dashboard"}>Dashboard</Link>
+      ) : null}
       <Link href={"/blog"}>Blog</Link>
 
       {status === "authenticated" ? (
