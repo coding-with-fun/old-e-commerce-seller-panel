@@ -1,3 +1,4 @@
+import Outlet from "@/HOC/Outlet";
 import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
@@ -9,13 +10,15 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <div className="h-screen">
-        <Navbar />
+      <Outlet>
+        <div className="h-screen">
+          <Navbar />
 
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
+          <main>
+            <Component {...pageProps} />
+          </main>
+        </div>
+      </Outlet>
     </SessionProvider>
   );
 }
